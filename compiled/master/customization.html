@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>HydePHP - Customizing your Site</title>
+
+        <link
+            rel="shortcut icon"
+            href="../../media/favicon.ico"
+            type="image/x-icon" />
+
+        <meta name="generator" content="HydePHP v0.23.2-beta" />
+
+        <meta property="og:site_name" content="HydePHP" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.css" />
+
+        <link rel="stylesheet" href="../../media/app.css" />
+
+        <script>
+            if (
+                localStorage.getItem("color-theme") === "dark" ||
+                (!("color-theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches)
+            ) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        </script>
+    </head>
+
+    <body id="lagrafo-app">
+        <script>
+            document.body.classList.add("js-enabled");
+        </script>
+
+        <nav id="mobile-navigation">
+            <strong class="mr-auto">
+                <a href="index.html"> HydePHP Docs </a>
+            </strong>
+            <button
+                class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                title="Toggle theme">
+                <span class="sr-only">Toggle dark theme</span>
+                <figure class="theme-icon" role="presentation"></figure>
+            </button>
+            <button
+                id="sidebar-toggle"
+                title="Toggle sidebar"
+                aria-label="Toggle sidebar navigation menu">
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+            </button>
+        </nav>
+        <aside id="sidebar">
+            <header id="sidebar-header">
+                <div id="sidebar-brand">
+                    <strong>
+                        <a href="index.html"> HydePHP Docs </a>
+                    </strong>
+                    <button
+                        class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                        title="Toggle theme">
+                        <span class="sr-only">Toggle dark theme</span>
+                        <figure class="theme-icon" role="presentation"></figure>
+                    </button>
+                </div>
+            </header>
+            <nav id="sidebar-navigation">
+                <ul id="sidebar-navigation-menu" role="list">
+                    <li class="sidebar-navigation-item">
+                        <a href="installation.html">Installation</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="getting-started.html">Getting Started</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="directory-structure.html"
+                            >Directory Structure</a
+                        >
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="console-commands.html">Console Commands</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="managing-assets.html">Managing Assets</a>
+                    </li>
+                    <li class="sidebar-navigation-item active">
+                        <a href="customization.html" aria-current="true"
+                            >Customization</a
+                        >
+
+                        <span class="sr-only">Table of contents</span>
+                        <ul class="table-of-contents">
+                            <li>
+                                <a href="#main-configuration-file"
+                                    >Main Configuration File</a
+                                >
+                                <ul>
+                                    <li>
+                                        <a href="#modules">Modules</a>
+                                    </li>
+                                    <li>
+                                        <a href="#footer">Footer</a>
+                                    </li>
+                                    <li>
+                                        <a href="#navigation-menu--sidebar"
+                                            >Navigation Menu &amp; Sidebar</a
+                                        >
+                                        <ul>
+                                            <li>
+                                                <a href="#how-it-works"
+                                                    >How it works:</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a href="#reordering-items"
+                                                    >Reordering Items</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="#adding-custom-navigation-menu-links"
+                                                    >Adding Custom Navigation
+                                                    Menu Links</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="#removing-items-blacklist"
+                                                    >Removing Items
+                                                    (Blacklist)</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#blade-views">Blade Views</a>
+                            </li>
+                            <li>
+                                <a href="#frontend-styles">Frontend Styles</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="updating-hyde.html">Updating Hyde</a>
+                    </li>
+                </ul>
+            </nav>
+            <footer id="sidebar-footer">
+                <p>
+                    <a href="../../index.html">Back to home page</a>
+                </p>
+            </footer>
+        </aside>
+        <main id="content">
+            <article
+                id="document"
+                itemscope
+                itemtype="https://schema.org/Article"
+                class="mx-auto lg:ml-8 prose dark:prose-invert max-w-3xl torchlight-enabled">
+                <section id="document-main-content" itemprop="articleBody">
+                    <h1>
+                        <a
+                            id="customizing-your-site"
+                            href="#customizing-your-site"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Customizing your Site
+                    </h1>
+                    <p class="lead">
+                        Hyde favours
+                        <a
+                            href="https://en.wikipedia.org/wiki/Convention_over_configuration"
+                            >"Convention over Configuration"</a
+                        >
+                        and thus comes preconfigured with sensible defaults.
+                        However, Hyde also strives to be modular and endlessly
+                        customizable hackable if you need it. This page guides
+                        you through the endless options available!
+                    </p>
+                    <h2>
+                        <a
+                            id="main-configuration-file"
+                            href="#main-configuration-file"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Main Configuration File
+                    </h2>
+                    <p>
+                        The main configuration file is in
+                        <code>config/hyde.php</code>. The
+                        <a
+                            href="https://github.com/hydephp/hyde/blob/master/config/hyde.php"
+                            >config file</a
+                        >
+                        is fully documented so I recommend you take a look to
+                        see all the options.
+                    </p>
+                    <p>
+                        In this config file, you can customize the site name,
+                        what modules to enable, and programmatically customize
+                        the navigation menu and documentation sidebar.
+                    </p>
+                    <p>Here are a few examples of the config options.</p>
+                    <h3>
+                        <a
+                            id="modules"
+                            href="#modules"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Modules
+                    </h3>
+                    <p>
+                        With a concept directly inspired by
+                        <a href="https://jetstream.laravel.com/"
+                            >Laravel Jetstream</a
+                        >, this setting allows you to toggle various modules.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="php" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">features</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">[</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #FFCB6B;">Features</span><span style="color: #89DDFF;">::</span><span style="color: #82AAFF;">blogPosts</span><span style="color: #89DDFF;">(),</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #FFCB6B;">Features</span><span style="color: #89DDFF;">::</span><span style="color: #82AAFF;">bladePages</span><span style="color: #89DDFF;">(),</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #FFCB6B;">Features</span><span style="color: #89DDFF;">::</span><span style="color: #82AAFF;">markdownPages</span><span style="color: #89DDFF;">(),</span></div><div class='line'><span style="color: #89DDFF;">    </span><span style="color: #676E95;">// Features::documentationPages(),</span></div><div class='line'><span style="color: #89DDFF;">],</span></div></code></pre>
+                    <h3>
+                        <a
+                            id="footer"
+                            href="#footer"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Footer
+                    </h3>
+                    <p>
+                        The footer can be customized using Markdown, and even
+                        disabled completely.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="php" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">footer</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">[</span></div><div class='line'><span style="color: #A6ACCD;">  </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">enabled</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">true,</span></div><div class='line'><span style="color: #A6ACCD;">  </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">markdown</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">Site built with [HydePHP](https://github.com/hydephp/hyde).</span><span style="color: #89DDFF;">&#39;</span></div><div class='line'><span style="color: #89DDFF;">],</span></div></code></pre>
+                    <h3>
+                        <a
+                            id="navigation-menu--sidebar"
+                            href="#navigation-menu--sidebar"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Navigation Menu &amp; Sidebar
+                    </h3>
+                    <p>
+                        One of my (the author's) favourite features with Hyde is
+                        its automatic navigation menu and documentation sidebar
+                        generator.
+                    </p>
+                    <h4>
+                        <a
+                            id="how-it-works"
+                            href="#how-it-works"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >How it works:
+                    </h4>
+                    <p>
+                        The sidebar works by creating a list of all the
+                        documentation pages.
+                    </p>
+                    <p>
+                        The navigation menu is a bit more sophisticated, it adds
+                        all the top-level Blade and Markdown pages. It also adds
+                        an automatic link to the docs if there is an
+                        <code>index.md</code> or <code>readme.md</code> in the
+                        <code>_docs</code> directory.
+                    </p>
+                    <h4>
+                        <a
+                            id="reordering-items"
+                            href="#reordering-items"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Reordering Items
+                    </h4>
+                    <p>
+                        Sadly, Hyde is not intelligent enough to determine what
+                        order items should be in (blame Dr Jekyll for this), so
+                        you will probably want to set a custom order.
+                    </p>
+                    <p>
+                        Reordering items in the documentation sidebar is as easy
+                        as can be. In the hyde config, there is an array just
+                        for this. When the sidebar is generated it looks through
+                        this config array. If a slug is found here it will get
+                        priority according to its position in the list. If a
+                        page does not exist in the list they get priority 999,
+                        which puts them last.
+                    </p>
+                    <p>Let's see an example:</p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="php" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #676E95;">// This is the default values in the config. It puts the readme.md first in order.</span></div><div class='line'><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">documentationPageOrder</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">[</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">readme</span><span style="color: #89DDFF;">&#39;</span><span style="color: #89DDFF;">,</span><span style="color: #A6ACCD;"> </span><span style="color: #676E95;">// This is the first entry, so it gets the priority 0</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">installation</span><span style="color: #89DDFF;">&#39;</span><span style="color: #89DDFF;">,</span><span style="color: #A6ACCD;"> </span><span style="color: #676E95;">// This gets priority 1</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">getting-started</span><span style="color: #89DDFF;">&#39;</span><span style="color: #89DDFF;">,</span><span style="color: #A6ACCD;"> </span><span style="color: #676E95;">// And this gets priority 2</span></div><div class='line'><span style="color: #89DDFF;">    </span><span style="color: #676E95;">// Any other pages not listed will get priority 999</span></div><div class='line'><span style="color: #89DDFF;">]</span></div></code></pre>
+                    <blockquote>
+                        <p>
+                            Navigation menu items will be ordered in the same
+                            way in a coming update, but for now, they can be
+                            reordered by overriding them which you can learn in
+                            the next section.
+                        </p>
+                    </blockquote>
+                    <h4>
+                        <a
+                            id="adding-custom-navigation-menu-links"
+                            href="#adding-custom-navigation-menu-links"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Adding Custom Navigation Menu Links
+                    </h4>
+                    <blockquote>
+                        <p>
+                            Until the navigation link order is implemented, you
+                            can use this feature to reorder navigation menu
+                            items.
+                        </p>
+                    </blockquote>
+                    <p>
+                        The links are added in the config/hyde.php file, and the
+                        syntax for adding custom links is documented in the
+                        config. Here are some examples:
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="php" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #676E95;">// External link</span></div><div class='line'><span style="color: #89DDFF;">[</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">title</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">GitHub</span><span style="color: #89DDFF;">&#39;</span><span style="color: #89DDFF;">,</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">destination</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">https://github.com/hydephp/hyde</span><span style="color: #89DDFF;">&#39;</span><span style="color: #89DDFF;">,</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">priority</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #F78C6C;">1200</span><span style="color: #89DDFF;">,</span></div><div class='line'><span style="color: #89DDFF;">],</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #676E95;">// Internal link (Hyde automatically resolves relative paths)</span></div><div class='line'><span style="color: #89DDFF;">[</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">title</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">Featured Blog Post</span><span style="color: #89DDFF;">&#39;</span><span style="color: #89DDFF;">,</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">slug</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">posts/hello-world</span><span style="color: #89DDFF;">&#39;</span><span style="color: #89DDFF;">,</span></div><div class='line'><span style="color: #89DDFF;">    </span><span style="color: #676E95;">// The &#39;priority&#39; is not required.</span></div><div class='line'><span style="color: #89DDFF;">]</span></div></code></pre>
+                    <h4>
+                        <a
+                            id="removing-items-blacklist"
+                            href="#removing-items-blacklist"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Removing Items (Blacklist)
+                    </h4>
+                    <p>
+                        Sometimes, especially if you have a lot of pages, you
+                        may want to prevent links from showing up in the main
+                        navigation menu. To remove items from being
+                        automatically added, simply add the slug to the
+                        blacklist. As you can see, the <code>404</code> page has
+                        already been filled in for you.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="php" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">navigationMenuBlacklist</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">[</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">2</span><span style="color: #A6ACCD;">    </span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">404</span><span style="color: #89DDFF;">&#39;</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">3</span><span style="color: #89DDFF;">],</span></div></code></pre>
+                    <blockquote>
+                        <p>
+                            Tip: You can publish the included 404 page using
+                            <code>php hyde publish:404</code>!
+                        </p>
+                    </blockquote>
+                    <h2>
+                        <a
+                            id="blade-views"
+                            href="#blade-views"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Blade Views
+                    </h2>
+                    <p>
+                        Hyde uses the Laravel templating system called Blade.
+                        Most parts have been extracted into components to be
+                        customized easily.
+                    </p>
+                    <blockquote>
+                        <p>
+                            Before editing Blade views you should familiarize
+                            yourself with how they work in the official
+                            documentation
+                            <a href="https://laravel.com/docs/9.x/blade"
+                                >https://laravel.com/docs/9.x/blade</a
+                            >.
+                        </p>
+                    </blockquote>
+                    <p>
+                        To edit the default component you need to publish them
+                        first using the <code>hyde publish:views</code> command.
+                    </p>
+                    <h2>
+                        <a
+                            id="frontend-styles"
+                            href="#frontend-styles"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Frontend Styles
+                    </h2>
+                    <p>
+                        Hyde is designed to not only serve as a framework but a
+                        whole starter kit and comes with a Tailwind starter
+                        template for you to get up and running quickly.
+                    </p>
+                    <p>
+                        Please see the chapter in the
+                        <a href="getting-started.html">Getting Started</a> page
+                        to learn more.
+                    </p>
+                    <p class="mt-8">
+                        <i>
+                            Syntax highlighting by
+                            <a
+                                href="https://torchlight.dev/"
+                                rel="noopener nofollow"
+                                >Torchlight.dev</a
+                            >
+                        </i>
+                    </p>
+                </section>
+            </article>
+        </main>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.js"></script>
+
+        <script defer src="../../media/app.js"></script>
+    </body>
+</html>

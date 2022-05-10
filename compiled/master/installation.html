@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>HydePHP - Installation Guide</title>
+
+        <link
+            rel="shortcut icon"
+            href="../../media/favicon.ico"
+            type="image/x-icon" />
+
+        <meta name="generator" content="HydePHP v0.23.2-beta" />
+
+        <meta property="og:site_name" content="HydePHP" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.css" />
+
+        <link rel="stylesheet" href="../../media/app.css" />
+
+        <script>
+            if (
+                localStorage.getItem("color-theme") === "dark" ||
+                (!("color-theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches)
+            ) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        </script>
+    </head>
+
+    <body id="lagrafo-app">
+        <script>
+            document.body.classList.add("js-enabled");
+        </script>
+
+        <nav id="mobile-navigation">
+            <strong class="mr-auto">
+                <a href="index.html"> HydePHP Docs </a>
+            </strong>
+            <button
+                class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                title="Toggle theme">
+                <span class="sr-only">Toggle dark theme</span>
+                <figure class="theme-icon" role="presentation"></figure>
+            </button>
+            <button
+                id="sidebar-toggle"
+                title="Toggle sidebar"
+                aria-label="Toggle sidebar navigation menu">
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+            </button>
+        </nav>
+        <aside id="sidebar">
+            <header id="sidebar-header">
+                <div id="sidebar-brand">
+                    <strong>
+                        <a href="index.html"> HydePHP Docs </a>
+                    </strong>
+                    <button
+                        class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                        title="Toggle theme">
+                        <span class="sr-only">Toggle dark theme</span>
+                        <figure class="theme-icon" role="presentation"></figure>
+                    </button>
+                </div>
+            </header>
+            <nav id="sidebar-navigation">
+                <ul id="sidebar-navigation-menu" role="list">
+                    <li class="sidebar-navigation-item active">
+                        <a href="installation.html" aria-current="true"
+                            >Installation</a
+                        >
+
+                        <span class="sr-only">Table of contents</span>
+                        <ul class="table-of-contents">
+                            <li>
+                                <a
+                                    href="#installing-hydephp-using-composer-recommended"
+                                    >Installing HydePHP using Composer
+                                    (recommended)</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#installing-hydephp-gitgithub"
+                                    >Installing HydePHP Git/GitHub</a
+                                >
+                                <ul>
+                                    <li>
+                                        <a href="#clone-the-repo"
+                                            >Clone the repo</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="#finalizing">Finalizing</a>
+                                    </li>
+                                    <li>
+                                        <a href="#usage">Usage</a>
+                                    </li>
+                                    <li>
+                                        <a href="#a-note-on-npmnodejs"
+                                            >A note on NPM/NodeJS</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#next-steps">Next steps</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="getting-started.html">Getting Started</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="directory-structure.html"
+                            >Directory Structure</a
+                        >
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="console-commands.html">Console Commands</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="managing-assets.html">Managing Assets</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="customization.html">Customization</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="updating-hyde.html">Updating Hyde</a>
+                    </li>
+                </ul>
+            </nav>
+            <footer id="sidebar-footer">
+                <p>
+                    <a href="../../index.html">Back to home page</a>
+                </p>
+            </footer>
+        </aside>
+        <main id="content">
+            <article
+                id="document"
+                itemscope
+                itemtype="https://schema.org/Article"
+                class="mx-auto lg:ml-8 prose dark:prose-invert max-w-3xl torchlight-enabled">
+                <section id="document-main-content" itemprop="articleBody">
+                    <h1>
+                        <a
+                            id="installation-guide"
+                            href="#installation-guide"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Installation Guide
+                    </h1>
+                    <h2>
+                        <a
+                            id="installing-hydephp-using-composer-recommended"
+                            href="#installing-hydephp-using-composer-recommended"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Installing HydePHP using Composer (recommended)
+                    </h2>
+                    <p>
+                        The recommended method of installing Hyde is using
+                        Composer. After the project has been created you can
+                        scaffold a new blog post using the
+                        <code>make</code> command and following the on-screen
+                        instructions, and then compile the site into static HTML
+                        using the <code>build</code> command.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #FFCB6B;">composer</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">create-project</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde/hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">example-site</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #82AAFF;">cd</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">example-site</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #FFCB6B;">npm</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">install</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">&amp;&amp;</span><span style="color: #A6ACCD;"> </span><span style="color: #FFCB6B;">npm</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">run</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">dev</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">make:post</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">build</span></div></code></pre>
+                    <p>
+                        If you now take a look in the
+                        <code>_site</code> directory you should see that an
+                        index.html file, as well as a posts/hello-world.html
+                        file, has been created! Open them up in your browser and
+                        take a look!
+                    </p>
+                    <blockquote>
+                        <p>
+                            If you are missing the stylesheet, run
+                            <code>npm install &amp;&amp; npm run dev</code>
+                        </p>
+                    </blockquote>
+                    <h2>
+                        <a
+                            id="installing-hydephp-gitgithub"
+                            href="#installing-hydephp-gitgithub"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Installing HydePHP Git/GitHub
+                    </h2>
+                    <p>
+                        If you want to run the latest development branch of Hyde
+                        (not recommended for production!) you can install it
+                        directly from Git/GitHub.
+                    </p>
+                    <h3>
+                        <a
+                            id="clone-the-repo"
+                            href="#clone-the-repo"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Clone the repo
+                    </h3>
+                    <p>
+                        There are two methods for creating a new project using
+                        Git/GitHub. The first one is using the GitHub website
+                        where you can clone the template repository using the
+                        green button labelled &quot;Use this template&quot;
+                        found at
+                        <a href="https://github.com/hydephp/Hyde"
+                            >https://github.com/hydephp/Hyde</a
+                        >.
+                    </p>
+                    <p>Or if you want to use the CLI, run</p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #FFCB6B;">git</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">clone</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">https://github.com/hydephp/hyde.git</span></div></code></pre>
+                    <h3>
+                        <a
+                            id="finalizing"
+                            href="#finalizing"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Finalizing
+                    </h3>
+                    <p>
+                        Next, navigate into the created project and install the
+                        dependencies and build the assets.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #82AAFF;">cd</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span></div><div class='line'><span style="color: #FFCB6B;">composer</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">install</span></div><div class='line'><span style="color: #FFCB6B;">npm</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">install</span></div><div class='line'><span style="color: #FFCB6B;">npm</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">run</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">dev</span></div></code></pre>
+                    <h3>
+                        <a
+                            id="usage"
+                            href="#usage"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Usage
+                    </h3>
+                    <p>
+                        After the project has been created you can scaffold a
+                        new blog post using the <code>make</code> command and
+                        following the on-screen instructions, and then compile
+                        the site into static HTML using the
+                        <code>build</code> command.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">make:post</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">build</span></div></code></pre>
+                    <p>
+                        If you now take a look in the
+                        <code>_site</code> directory you should see that an
+                        index.html file, as well as a posts/hello-world.html
+                        file, has been created! Open them up in your browser and
+                        take a look!
+                    </p>
+                    <h3>
+                        <a
+                            id="a-note-on-npmnodejs"
+                            href="#a-note-on-npmnodejs"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >A note on NPM/NodeJS
+                    </h3>
+                    <p>
+                        Using NPM and NodeJS is optional as Hyde comes bundled
+                        with a precompiled and minified
+                        <code>app.css</code> containing all the Tailwind you
+                        need for the default views. However, if you want to
+                        customize the Tailwind config, or if you add new classes
+                        when customizing views or creating your own Blade pages,
+                        you will need to compile the assets yourself. Hyde makes
+                        this easy by shipping everything you need to use Laravel
+                        Mix. Simply run <code>npm install</code> and
+                        <code>npm run dev/prod/watch</code> to compile the
+                        Tailwind assets.
+                    </p>
+                    <h2>
+                        <a
+                            id="next-steps"
+                            href="#next-steps"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Next steps
+                    </h2>
+                    <p>
+                        Make sure you check out the
+                        <a href="getting-started.html">getting started</a> page
+                        to learn how to use Hyde!
+                    </p>
+                    <p class="mt-8">
+                        <i>
+                            Syntax highlighting by
+                            <a
+                                href="https://torchlight.dev/"
+                                rel="noopener nofollow"
+                                >Torchlight.dev</a
+                            >
+                        </i>
+                    </p>
+                </section>
+            </article>
+        </main>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.js"></script>
+
+        <script defer src="../../media/app.js"></script>
+    </body>
+</html>

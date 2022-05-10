@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>HydePHP - Managing and Compiling Assets</title>
+
+        <link
+            rel="shortcut icon"
+            href="../../media/favicon.ico"
+            type="image/x-icon" />
+
+        <meta name="generator" content="HydePHP v0.23.2-beta" />
+
+        <meta property="og:site_name" content="HydePHP" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.css" />
+
+        <link rel="stylesheet" href="../../media/app.css" />
+
+        <script>
+            if (
+                localStorage.getItem("color-theme") === "dark" ||
+                (!("color-theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches)
+            ) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        </script>
+    </head>
+
+    <body id="lagrafo-app">
+        <script>
+            document.body.classList.add("js-enabled");
+        </script>
+
+        <nav id="mobile-navigation">
+            <strong class="mr-auto">
+                <a href="index.html"> HydePHP Docs </a>
+            </strong>
+            <button
+                class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                title="Toggle theme">
+                <span class="sr-only">Toggle dark theme</span>
+                <figure class="theme-icon" role="presentation"></figure>
+            </button>
+            <button
+                id="sidebar-toggle"
+                title="Toggle sidebar"
+                aria-label="Toggle sidebar navigation menu">
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+            </button>
+        </nav>
+        <aside id="sidebar">
+            <header id="sidebar-header">
+                <div id="sidebar-brand">
+                    <strong>
+                        <a href="index.html"> HydePHP Docs </a>
+                    </strong>
+                    <button
+                        class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                        title="Toggle theme">
+                        <span class="sr-only">Toggle dark theme</span>
+                        <figure class="theme-icon" role="presentation"></figure>
+                    </button>
+                </div>
+            </header>
+            <nav id="sidebar-navigation">
+                <ul id="sidebar-navigation-menu" role="list">
+                    <li class="sidebar-navigation-item">
+                        <a href="installation.html">Installation</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="getting-started.html">Getting Started</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="directory-structure.html"
+                            >Directory Structure</a
+                        >
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="console-commands.html">Console Commands</a>
+                    </li>
+                    <li class="sidebar-navigation-item active">
+                        <a href="managing-assets.html" aria-current="true"
+                            >Managing Assets</a
+                        >
+
+                        <span class="sr-only">Table of contents</span>
+                        <ul class="table-of-contents">
+                            <li>
+                                <a href="#intro">Intro</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#some-extra-information-and-answers-to-possible-questions"
+                                    >Some extra information, and answers to
+                                    possible questions</a
+                                >
+                                <ul>
+                                    <li>
+                                        <a
+                                            href="#do-i-have-to-use-npm-to-use-hyde"
+                                            >Do I have to use NPM to use
+                                            Hyde?</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#when-do-i-need-to-compile-assets"
+                                            >When do I need to compile
+                                            assets?</a
+                                        >
+                                        <ul>
+                                            <li>
+                                                <a href="#when-customizing"
+                                                    >When customizing</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="#when-adding-new-classes"
+                                                    >When adding new classes</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#how-are-assets-stored-and-managed"
+                                    >How are assets stored and managed?</a
+                                >
+                                <ul>
+                                    <li>
+                                        <a
+                                            href="#what-is-the-difference-between-media-and-sitemedia"
+                                            >What is the difference between
+                                            _media and _site/media?</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#how-do-i-compile-assets"
+                                    >How do I compile assets?</a
+                                >
+                                <ul>
+                                    <li>
+                                        <a href="#how-does-it-work"
+                                            >How does it work?</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#managing-images">Managing images</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="customization.html">Customization</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="updating-hyde.html">Updating Hyde</a>
+                    </li>
+                </ul>
+            </nav>
+            <footer id="sidebar-footer">
+                <p>
+                    <a href="../../index.html">Back to home page</a>
+                </p>
+            </footer>
+        </aside>
+        <main id="content">
+            <article
+                id="document"
+                itemscope
+                itemtype="https://schema.org/Article"
+                class="mx-auto lg:ml-8 prose dark:prose-invert max-w-3xl torchlight-enabled">
+                <section id="document-main-content" itemprop="articleBody">
+                    <h1>
+                        <a
+                            id="managing-and-compiling-assets"
+                            href="#managing-and-compiling-assets"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Managing and Compiling Assets
+                    </h1>
+                    <h2>
+                        <a
+                            id="intro"
+                            href="#intro"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Intro
+                    </h2>
+                    <p>
+                        Managing and compiling assets is a very common task in
+                        web development. Unfortunately, it's rarely fun.
+                    </p>
+                    <p>
+                        With hyde, <strong>you don't have to do it</strong>, in
+                        fact, you can skip this entire page if you are happy
+                        with how it is. But as always with Hyde, you can
+                        customize everything if you want to.
+                    </p>
+                    <p>
+                        Hyde ships with a complete frontend where base styles
+                        and scripts are included through
+                        <a href="https://github.com/hydephp/hydefront"
+                            >HydeFront</a
+                        >
+                        which adds accessibility and mobile support as well as
+                        interactions for dark mode switching and navigation and
+                        sidebar interactions.
+                    </p>
+                    <p>
+                        HydeFront is split into two files,
+                        <code>hyde.css</code> and <code>hyde.js</code>. These
+                        are loaded in the default Blade views using the
+                        <a href="https://www.jsdelivr.com/package/npm/hydefront"
+                            >jsDelivr CDN</a
+                        >. This is the recommended way to load the base styles
+                        as the
+                        <a href="https://github.com/hydephp/framework"
+                            >Hyde Framework</a
+                        >
+                        automatically makes sure that the correct HydeFront
+                        version for the current version of Hyde is loaded. You
+                        can disable the CDN in the
+                        <code>config/hyde.php</code> file by setting
+                        <code>'loadHydeAssetsUsingCDN'</code> to
+                        <code>false</code>.
+                    </p>
+                    <p>
+                        The bulk of the frontend is built with
+                        <a href="https://tailwindcss.com/">TailwindCSS</a>. To
+                        get you started, when installing Hyde, all the Tailwind
+                        styles you need come precompiled and minified into
+                        <code>_media/app.css</code>.
+                    </p>
+                    <h2>
+                        <a
+                            id="some-extra-information-and-answers-to-possible-questions"
+                            href="#some-extra-information-and-answers-to-possible-questions"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Some extra information, and answers to possible
+                        questions
+                    </h2>
+                    <h3>
+                        <a
+                            id="do-i-have-to-use-npm-to-use-hyde"
+                            href="#do-i-have-to-use-npm-to-use-hyde"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Do I have to use NPM to use Hyde?
+                    </h3>
+                    <p>
+                        No. NPM is optional as all the compiled styles you need
+                        are already installed. You only need NPM if you want to
+                        compile your own styles.
+                    </p>
+                    <h3>
+                        <a
+                            id="when-do-i-need-to-compile-assets"
+                            href="#when-do-i-need-to-compile-assets"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >When do I need to compile assets?
+                    </h3>
+                    <h4>
+                        <a
+                            id="when-customizing"
+                            href="#when-customizing"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >When customizing
+                    </h4>
+                    <p>
+                        If you want to customize the Tailwind settings or add
+                        custom styles, you will need to take care of compiling
+                        the styles yourself.
+                    </p>
+                    <h4>
+                        <a
+                            id="when-adding-new-classes"
+                            href="#when-adding-new-classes"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >When adding new classes
+                    </h4>
+                    <p>
+                        The <code>_media/app.css</code> file that comes with
+                        Hyde contains TailwindCSS for all classes that are used
+                        in the default Blade views, but nothing more.
+                    </p>
+                    <p>
+                        If you customize the Blade views and add new classes, or
+                        if you add new classes in Blade-based pages, you may
+                        need to compile the assets yourself to get the new
+                        styles.
+                    </p>
+                    <p>
+                        If you stick to using Markdown based pages, you don't
+                        need to compile anything.
+                    </p>
+                    <h2>
+                        <a
+                            id="how-are-assets-stored-and-managed"
+                            href="#how-are-assets-stored-and-managed"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >How are assets stored and managed?
+                    </h2>
+                    <p>
+                        Currently, the frontend assets are separated into three
+                        places.
+                    </p>
+                    <p>
+                        The <code>resources/assets</code> contains
+                        <strong>source</strong> files, meaning files that will
+                        be compiled into something else. Here you will find the
+                        <code>app.css</code> file that bootstraps the
+                        TailwindCSS styles. This file is also an excellent place
+                        to add your custom styles.
+                    </p>
+                    <p>
+                        The <code>_media</code> folder contains
+                        <strong>compiled</strong> (and usually minified) files.
+                        When Hyde compiles your static site, all asset files
+                        here will get copied as they are into the
+                        <code>_site/media</code> folder.
+                    </p>
+                    <p>
+                        The <code>_site/media</code> folder contains the files
+                        that are served to the user.
+                    </p>
+                    <h3>
+                        <a
+                            id="what-is-the-difference-between-media-and-sitemedia"
+                            href="#what-is-the-difference-between-media-and-sitemedia"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >What is the difference between <code>_media</code> and
+                        <code>_site/media</code>?
+                    </h3>
+                    <p>
+                        It may seem weird to have two folders for storing the
+                        compiled assets, but it is quite useful.
+                    </p>
+                    <p>
+                        The <code>_site</code> directory is intended to be
+                        excluded from version control while the
+                        <code>_media</code> folder is included in the version
+                        control, though you may choose to exclude the compiled
+                        files from the <code>_media</code> folder if you want
+                        to.
+                    </p>
+                    <p>
+                        You are of course free to modify this behavior by
+                        editing the <code>webpack.mix.js</code> file.
+                    </p>
+                    <h2>
+                        <a
+                            id="how-do-i-compile-assets"
+                            href="#how-do-i-compile-assets"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >How do I compile assets?
+                    </h2>
+                    <p>
+                        First, make sure that you have installed all the NodeJS
+                        dependencies using <code>npm install</code>. Then run
+                        <code>npm run dev</code> to compile the assets. If you
+                        want to compile the assets for production, run
+                        <code>npm run prod</code>. You can also run
+                        <code>npm run watch</code> to watch for changes in the
+                        source files and recompile the assets automatically.
+                    </p>
+                    <h3>
+                        <a
+                            id="how-does-it-work"
+                            href="#how-does-it-work"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >How does it work?
+                    </h3>
+                    <p>
+                        Hyde uses
+                        <a href="https://laravel-mix.com/">Laravel Mix</a>
+                        (which is a wrapper for
+                        <a href="https://webpack.js.org/">webpack</a>) to
+                        compile the assets.
+                    </p>
+                    <p>
+                        When running the <code>npm run dev/prod</code> command,
+                        the following happens:
+                    </p>
+                    <ol>
+                        <li>
+                            Laravel Mix will compile the
+                            <code>resources/assets/app.css</code> file into
+                            <code>_media/app.css</code> using PostCSS with
+                            TailwindCSS and AutoPrefixer.
+                        </li>
+                        <li>
+                            Mix then copies the <code>_media</code> folder into
+                            <code>_site/media</code>, this is so that they are
+                            automatically accessible to your site without having
+                            to rerun <code>php hyde build</code>.
+                        </li>
+                    </ol>
+                    <h2>
+                        <a
+                            id="managing-images"
+                            href="#managing-images"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Managing images
+                    </h2>
+                    <p>
+                        As mentioned above, assets stored in the _media folder
+                        are automatically copied to the _site/media folder,
+                        making it the recommended place to store images. You can
+                        then easily reference them in your Markdown files.
+                    </p>
+                </section>
+            </article>
+        </main>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.js"></script>
+
+        <script defer src="../../media/app.js"></script>
+    </body>
+</html>

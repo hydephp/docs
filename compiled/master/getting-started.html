@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>HydePHP - Getting Started</title>
+
+        <link
+            rel="shortcut icon"
+            href="../../media/favicon.ico"
+            type="image/x-icon" />
+
+        <meta name="generator" content="HydePHP v0.23.2-beta" />
+
+        <meta property="og:site_name" content="HydePHP" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.css" />
+
+        <link rel="stylesheet" href="../../media/app.css" />
+
+        <script>
+            if (
+                localStorage.getItem("color-theme") === "dark" ||
+                (!("color-theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches)
+            ) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        </script>
+    </head>
+
+    <body id="lagrafo-app">
+        <script>
+            document.body.classList.add("js-enabled");
+        </script>
+
+        <nav id="mobile-navigation">
+            <strong class="mr-auto">
+                <a href="index.html"> HydePHP Docs </a>
+            </strong>
+            <button
+                class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                title="Toggle theme">
+                <span class="sr-only">Toggle dark theme</span>
+                <figure class="theme-icon" role="presentation"></figure>
+            </button>
+            <button
+                id="sidebar-toggle"
+                title="Toggle sidebar"
+                aria-label="Toggle sidebar navigation menu">
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+            </button>
+        </nav>
+        <aside id="sidebar">
+            <header id="sidebar-header">
+                <div id="sidebar-brand">
+                    <strong>
+                        <a href="index.html"> HydePHP Docs </a>
+                    </strong>
+                    <button
+                        class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                        title="Toggle theme">
+                        <span class="sr-only">Toggle dark theme</span>
+                        <figure class="theme-icon" role="presentation"></figure>
+                    </button>
+                </div>
+            </header>
+            <nav id="sidebar-navigation">
+                <ul id="sidebar-navigation-menu" role="list">
+                    <li class="sidebar-navigation-item">
+                        <a href="installation.html">Installation</a>
+                    </li>
+                    <li class="sidebar-navigation-item active">
+                        <a href="getting-started.html" aria-current="true"
+                            >Getting Started</a
+                        >
+
+                        <span class="sr-only">Table of contents</span>
+                        <ul class="table-of-contents">
+                            <li>
+                                <a href="#creating-content">Creating content</a>
+                                <ul>
+                                    <li>
+                                        <a href="#hyde-posts">Hyde Posts</a>
+                                        <ul>
+                                            <li>
+                                                <a href="#creating-posts"
+                                                    >Creating posts</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a href="#about-front-matter"
+                                                    >About Front Matter</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a href="#tutorial">Tutorial</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#hyde-docs">Hyde Docs</a>
+                                    </li>
+                                    <li>
+                                        <a href="#hyde-pages-using-markdown"
+                                            >Hyde Pages using Markdown</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="#hyde-pages-using-blade"
+                                            >Hyde Pages using Blade</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="#adding-images"
+                                            >Adding Images</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#building-the-static-site"
+                                    >Building the static site</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#frontend-stylesheets-and-scripts"
+                                    >Frontend stylesheets and scripts</a
+                                >
+                                <ul>
+                                    <li>
+                                        <a
+                                            href="#the-default-frontend-resource-files-are-as-follows"
+                                            >The default frontend resource files
+                                            are as follows:</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#updating-to-the-latest-version"
+                                            >Updating to the latest version</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="directory-structure.html"
+                            >Directory Structure</a
+                        >
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="console-commands.html">Console Commands</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="managing-assets.html">Managing Assets</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="customization.html">Customization</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="updating-hyde.html">Updating Hyde</a>
+                    </li>
+                </ul>
+            </nav>
+            <footer id="sidebar-footer">
+                <p>
+                    <a href="../../index.html">Back to home page</a>
+                </p>
+            </footer>
+        </aside>
+        <main id="content">
+            <article
+                id="document"
+                itemscope
+                itemtype="https://schema.org/Article"
+                class="mx-auto lg:ml-8 prose dark:prose-invert max-w-3xl torchlight-enabled">
+                <section id="document-main-content" itemprop="articleBody">
+                    <h1>
+                        <a
+                            id="getting-started"
+                            href="#getting-started"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Getting Started
+                    </h1>
+                    <p>
+                        Now that you have installed Hyde, let's get to using it!
+                    </p>
+                    <blockquote>
+                        <p>
+                            If you have not already, now may be good to
+                            familiarize yourself with the
+                            <a href="directory-structure.html"
+                                >Directory Structure</a
+                            >.
+                        </p>
+                    </blockquote>
+                    <h2>
+                        <a
+                            id="creating-content"
+                            href="#creating-content"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Creating content
+                    </h2>
+                    <p>
+                        Hyde has 3 types of content generation (though you are
+                        free to add more, submit a PR!). You can think of them
+                        as modules if you want.
+                    </p>
+                    <ul>
+                        <li>Hyde Posts - For the blogging system</li>
+                        <li>Hyde Docs - For generating documentation pages</li>
+                        <li>
+                            Hyde Pages - For generating both simple Markdown
+                            pages and advanced Blade ones
+                        </li>
+                    </ul>
+                    <p>Let's jump in and take a closer look at each of them!</p>
+                    <h3>
+                        <a
+                            id="hyde-posts"
+                            href="#hyde-posts"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Hyde Posts
+                    </h3>
+                    <p>
+                        This is the Blogging module. Blog Posts, or simply
+                        Posts, are Markdown files stored in the
+                        <code>_posts</code> directory.
+                    </p>
+                    <h4>
+                        <a
+                            id="creating-posts"
+                            href="#creating-posts"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Creating posts
+                    </h4>
+                    <p>Posts can be created in one of two ways:</p>
+                    <ol>
+                        <li>
+                            You can create them manually by creating the files,
+                            or
+                        </li>
+                        <li>
+                            you can use the ´php hyde make:post´ command which
+                            automatically fills in the front matter for you.
+                        </li>
+                    </ol>
+                    <blockquote>
+                        <p>
+                            See the tutorial for further instructions on how to
+                            use the make:post command.
+                        </p>
+                    </blockquote>
+                    <p>
+                        In both cases, the markdown file should use the
+                        kebab-case format and end in .md. When building the
+                        static site, the post will retain the filename slug but
+                        end in .html instead of .md.
+                    </p>
+                    <p>
+                        For example: <code>_posts/hello-world.md</code> will
+                        become <code>_site/posts/hello-world.html</code>
+                    </p>
+                    <p>
+                        After creating your post, run
+                        <code>php hyde build</code> to build your site! You
+                        should also look at the section dedicated to building
+                        the site if you have not already.
+                    </p>
+                    <h4>
+                        <a
+                            id="about-front-matter"
+                            href="#about-front-matter"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >About Front Matter
+                    </h4>
+                    <p>
+                        These posts use a YAML syntax called &quot;Front
+                        Matter&quot; which you may be familiar with from
+                        frameworks like Jekyll.
+                    </p>
+                    <p>
+                        Each post should have a front-matter section before the
+                        content. A front matter section begins and ends with
+                        rows in the markdown file that consists of three dashes
+                        (<code>---</code>). Between these lines, you place
+                        key-value pairs of data which are shown in the frontend.
+                    </p>
+                    <p>
+                        Only the <code>title</code> is required, though you are
+                        encouraged to add any number of the following supported
+                        attributes as they are all displayed in the front end.
+                    </p>
+                    <p><strong>Example of a front-matter section</strong></p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="yaml" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">---</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">2</span><span style="color: #F07178;">title</span><span style="color: #89DDFF;">:</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">The title is the only value that is required</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">3</span><span style="color: #F07178;">description</span><span style="color: #89DDFF;">:</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">A short description used in previews and SEO</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">4</span><span style="color: #F07178;">category</span><span style="color: #89DDFF;">:</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">arbitrary-category-that-a,</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">5</span><span style="color: #F07178;">author</span><span style="color: #89DDFF;">:</span><span style="color: #A6ACCD;"> @</span><span style="color: #C3E88D;">TheMrHyde</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">6</span><span style="color: #F07178;">date</span><span style="color: #89DDFF;">:</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">YYYY-MM-DD 16:00</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">7</span><span style="color: #FFCB6B;">---</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">8</span>&nbsp;</div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">9</span><span style="color: #676E95;"># Actual Markdown content is placed here</span></div></code></pre>
+                    <blockquote>
+                        <p>
+                            At the moment no nested attributes are supported.
+                            The category value does not yet contain much
+                            functionality and is safe to omit.
+                        </p>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            Masterclass: you can add arbitrary front matter
+                            key-value-pairs and access them using
+                            <code>$post-&gt;matter['foo']</code> in a Blade view
+                        </p>
+                    </blockquote>
+                    <h4>
+                        <a
+                            id="tutorial"
+                            href="#tutorial"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Tutorial
+                    </h4>
+                    <p>
+                        For a full tutorial see
+                        <a
+                            href="https://hydephp.github.io/posts/creating-a-static-html-post-using-hydephp.html"
+                            >https://hydephp.github.io/posts/creating-a-static-html-post-using-hydephp.html</a
+                        >
+                    </p>
+                    <!-- 
+#### Deep-dive
+> Deepdives take a closer look into how a feature works behind the scenes. While not required to know it can help to understand the "magic" behind Hyde. -->
+                    <h3>
+                        <a
+                            id="hyde-docs"
+                            href="#hyde-docs"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Hyde Docs
+                    </h3>
+                    <p>
+                        The Hyde Docs is based on Laradocgen and
+                        <em>automagically</em> turns Markdown pages into
+                        documentation pages. They are what powers this
+                        documentation site!
+                    </p>
+                    <p>
+                        Creating documentation pages is a piece of cake. Create
+                        a file following the format of
+                        kebab-case-version-of-the-title.md in the _docs
+                        directory. Put any content you want in it, and run the
+                        build command.
+                    </p>
+                    <p>
+                        The sidebar will like magic be populated with all the
+                        documentation pages. The page titles in the sidebar are
+                        generated from the filename, and the HTML page title is
+                        inferred from the first H1 tag.
+                    </p>
+                    <blockquote>
+                        <p>
+                            <strong>Pro tip 1:</strong> Enable the Torchlight
+                            extension to get the beautiful syntax highlighting
+                            used here!
+                        </p>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            <strong>Pro tip 2:</strong> You can specify the
+                            output directory for documentation pages in the Hyde
+                            config. This site uses that feature to save the
+                            pages in the 'master' directory for easy version
+                            support!
+                        </p>
+                    </blockquote>
+                    <h3>
+                        <a
+                            id="hyde-pages-using-markdown"
+                            href="#hyde-pages-using-markdown"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Hyde Pages using Markdown
+                    </h3>
+                    <p>
+                        Hyde Markdown Pages are perfect for simple
+                        content-driven pages. Some examples of this may be
+                        &quot;About Us&quot; pages, or legal pages such as
+                        &quot;Terms of Service&quot; and &quot;Privacy
+                        Policy&quot;.
+                    </p>
+                    <p>
+                        The Markdown pages work similarly to Documentation pages
+                        but use a simple Blade layout, putting the focus on your
+                        content. To create a Markdown page, all you need to do
+                        is create a file ending in .md in the _pages directory.
+                    </p>
+                    <p>You can use front matter to set the page title,</p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="markdown" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #A6ACCD;">---</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">2</span><span style="color: #F07178;">title</span><span style="color: #89DDFF;">:</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">Hello World!</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">3</span><span style="color: #A6ACCD;">---</span></div></code></pre>
+                    <p>
+                        If you don't use front matter, the page title is
+                        automatically inferred from the first # H1 heading.
+                    </p>
+                    <p>You can scaffold Markdown pages using</p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">make:page</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">&quot;</span><span style="color: #C3E88D;">Page Name</span><span style="color: #89DDFF;">&quot;</span></div></code></pre>
+                    <h3>
+                        <a
+                            id="hyde-pages-using-blade"
+                            href="#hyde-pages-using-blade"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Hyde Pages using Blade
+                    </h3>
+                    <p>
+                        If you want full control over a static page you can
+                        create blade views in the pages directory
+                        <code>_pages</code>, and they will be compiled into
+                        static HTML.
+                    </p>
+                    <p>
+                        Currently, only top-level pages are supported. The
+                        filename of the generated file is based on the view
+                        filename. For example,
+                        <code>_pages\custom-page.blade.php</code> gets saved as
+                        <code>_site\custom-page.html</code>.
+                    </p>
+                    <p>
+                        You can scaffold Blade pages using the make:page command
+                        to automatically create the file based on the default
+                        layout.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">make:page</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">&quot;</span><span style="color: #C3E88D;">Page Name</span><span style="color: #89DDFF;">&quot;</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">--type=blade</span></div></code></pre>
+                    <p>
+                        <strong>⚠ Warning:</strong> Blade pages take precedence
+                        over Markdown pages! Do not use duplicate slugs. For
+                        example, if you have both an <code>about.md</code> and
+                        <code>about.blade.php</code>, only the Blade page will
+                        be compiled.
+                    </p>
+                    <p>
+                        <strong>Using the default layout</strong> If you want to
+                        match the styles of the rest of your app you can extend
+                        the default layout.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="blade" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #89DDFF;">@extends</span><span style="color: #A6ACCD;">(</span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">hyde::layouts.app</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;">)</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">2</span><span style="color: #89DDFF;">@section</span><span style="color: #A6ACCD;">(</span><span style="color: #89DDFF;">&#39;</span><span style="color: #C3E88D;">content</span><span style="color: #89DDFF;">&#39;</span><span style="color: #A6ACCD;">)</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">3</span>&nbsp;</div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">4</span><span style="color: #A6ACCD;">// Place content here</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">5</span>&nbsp;</div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">6</span><span style="color: #89DDFF;">@endsection</span></div></code></pre>
+                    <p>
+                        You can reference any Hyde components, or add your own
+                        templates! You can also set the page title using
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="blade" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #89DDFF;">@php</span><span style="color: #A6ACCD;">(</span><span style="color: #89DDFF;">$</span><span style="color: #A6ACCD;">title </span><span style="color: #89DDFF;">=</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">&quot;</span><span style="color: #C3E88D;">My Custom Title</span><span style="color: #89DDFF;">&quot;</span><span style="color: #A6ACCD;">)</span></div></code></pre>
+                    <h3>
+                        <a
+                            id="adding-images"
+                            href="#adding-images"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Adding Images
+                    </h3>
+                    <p>
+                        All media files in the _media directory will get copied
+                        to the _site/media directory upon build. To reference an
+                        image in your Markdown, use the following syntax To
+                        reference an image in your Markdown, use the following
+                        syntax
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="markdown" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #89DDFF;">![</span><span style="color: #C3E88D;">Image Alt</span><span style="color: #89DDFF;">]</span><span style="color: #89DDFF;">(</span><span style="color: #A6ACCD;">../media/image.png</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">&quot;</span><span style="color: #C3E88D;">Image Title</span><span style="color: #89DDFF;">&quot;</span><span style="color: #89DDFF;">)</span><span style="color: #A6ACCD;"> # Note the relative path</span></div></code></pre>
+                    <p>
+                        Since most images are probably going to be in blog posts
+                        or documentation pages you need to prepend the
+                        <code>../</code> before the &quot;media&quot;. However,
+                        if you are referencing the image on a Markdown page you
+                        should use <code>media/image.png</code> for the path.
+                    </p>
+                    <blockquote>
+                        <p>Nested media directories are not yet supported.</p>
+                    </blockquote>
+                    <h2>
+                        <a
+                            id="building-the-static-site"
+                            href="#building-the-static-site"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Building the static site
+                    </h2>
+                    <p>
+                        To compile the site into static HTML all you have to do
+                        is execute the Hyde build command.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">build</span></div></code></pre>
+                    <p>
+                        Your site will then be saved in the _site directory,
+                        which you can then upload to your static web host. All
+                        links use relative paths, so you can deploy to a
+                        subdirectory without any problems which also makes the
+                        site work great when browsing the HTML files locally
+                        even without a web server.
+                    </p>
+                    <p>
+                        If it is the first time building the site or if you have
+                        added any custom TailwindCSS classes in your Blade views
+                        you should also run
+                        <code>npm install &amp;&amp; npm run dev</code> to build
+                        the frontend assets.
+                    </p>
+                    <blockquote>
+                        <p>
+                            ⚠ Note that since v0.21.x the
+                            <code>_site</code> directory is emptied from all
+                            files before the site is built.
+                        </p>
+                    </blockquote>
+                    <h2>
+                        <a
+                            id="frontend-stylesheets-and-scripts"
+                            href="#frontend-stylesheets-and-scripts"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Frontend stylesheets and scripts
+                    </h2>
+                    <p>
+                        Hyde is designed to not only serve as a framework but a
+                        whole starter kit. Hyde comes with a Tailwind starter
+                        template for you to get up and running quickly.
+                    </p>
+                    <h3>
+                        <a
+                            id="the-default-frontend-resource-files-are-as-follows"
+                            href="#the-default-frontend-resource-files-are-as-follows"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >The default frontend resource files are as follows:
+                    </h3>
+                    <ul>
+                        <li>
+                            <p>
+                                <strong>App.css</strong> This file is mostly
+                                blank and only contains the TailwindCSS imports.
+                                If you want to add your own styles, this is a
+                                great place. Running
+                                <code>npm run dev/prod</code> will compile the
+                                Tailwind styles and any custom ones you define
+                                into <code>./_site/media/app.css</code>.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <strong>Hyde.css</strong> This file contains the
+                                base styles and should be loaded after App.css
+                                as it contains some Tailwind tweaks.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <strong>Hyde.js</strong> This file contains
+                                basic scripts to make the navigation menu and
+                                sidebars interactive.
+                            </p>
+                        </li>
+                    </ul>
+                    <p>
+                        You can customize all of them to your liking, however,
+                        if you edit the Hyde.css or Hyde.js you may need to
+                        merge them manually when updating to a version if they
+                        have been changed. All three files will get copied into
+                        the <code>./_site/media/</code> directory when running
+                        the build command.
+                    </p>
+                    <h3>
+                        <a
+                            id="updating-to-the-latest-version"
+                            href="#updating-to-the-latest-version"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Updating to the latest version
+                    </h3>
+                    <p>
+                        When updating Hyde, you may need to update the frontend
+                        resource files. You can do this using the following
+                        command:
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">update:assets</span></div></code></pre>
+                    <p>
+                        Note that this command will overwrite existing files!
+                        The following files in the
+                        <code>resources/assets/</code> directory will be
+                        overwritten:
+                    </p>
+                    <ul>
+                        <li>hyde.css</li>
+                        <li>hyde.js</li>
+                        <li>
+                            app.css Back up your content before running the
+                            command! (use Git so you can merge any conflicts)
+                        </li>
+                    </ul>
+                    <p class="mt-8">
+                        <i>
+                            Syntax highlighting by
+                            <a
+                                href="https://torchlight.dev/"
+                                rel="noopener nofollow"
+                                >Torchlight.dev</a
+                            >
+                        </i>
+                    </p>
+                </section>
+            </article>
+        </main>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.js"></script>
+
+        <script defer src="../../media/app.js"></script>
+    </body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>HydePHP - Console Commands</title>
+
+        <link
+            rel="shortcut icon"
+            href="../../media/favicon.ico"
+            type="image/x-icon" />
+
+        <meta name="generator" content="HydePHP v0.23.2-beta" />
+
+        <meta property="og:site_name" content="HydePHP" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.css" />
+
+        <link rel="stylesheet" href="../../media/app.css" />
+
+        <script>
+            if (
+                localStorage.getItem("color-theme") === "dark" ||
+                (!("color-theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches)
+            ) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        </script>
+    </head>
+
+    <body id="lagrafo-app">
+        <script>
+            document.body.classList.add("js-enabled");
+        </script>
+
+        <nav id="mobile-navigation">
+            <strong class="mr-auto">
+                <a href="index.html"> HydePHP Docs </a>
+            </strong>
+            <button
+                class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                title="Toggle theme">
+                <span class="sr-only">Toggle dark theme</span>
+                <figure class="theme-icon" role="presentation"></figure>
+            </button>
+            <button
+                id="sidebar-toggle"
+                title="Toggle sidebar"
+                aria-label="Toggle sidebar navigation menu">
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+            </button>
+        </nav>
+        <aside id="sidebar">
+            <header id="sidebar-header">
+                <div id="sidebar-brand">
+                    <strong>
+                        <a href="index.html"> HydePHP Docs </a>
+                    </strong>
+                    <button
+                        class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                        title="Toggle theme">
+                        <span class="sr-only">Toggle dark theme</span>
+                        <figure class="theme-icon" role="presentation"></figure>
+                    </button>
+                </div>
+            </header>
+            <nav id="sidebar-navigation">
+                <ul id="sidebar-navigation-menu" role="list">
+                    <li class="sidebar-navigation-item">
+                        <a href="installation.html">Installation</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="getting-started.html">Getting Started</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="directory-structure.html"
+                            >Directory Structure</a
+                        >
+                    </li>
+                    <li class="sidebar-navigation-item active">
+                        <a href="console-commands.html" aria-current="true"
+                            >Console Commands</a
+                        >
+
+                        <span class="sr-only">Table of contents</span>
+                        <ul class="table-of-contents">
+                            <li>
+                                <a href="#hyde-commands">Hyde Commands</a>
+                                <ul>
+                                    <li>
+                                        <a href="#the-build-command"
+                                            >The Build Command</a
+                                        >
+                                        <ul>
+                                            <li>
+                                                <a href="#the-rebuild-command"
+                                                    >The Rebuild Command</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#the-post-make-command"
+                                            >The Post Make Command</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="#the-publish-command"
+                                            >The Publish Command</a
+                                        >
+                                        <ul>
+                                            <li>
+                                                <a href="#publish-configs"
+                                                    >Publish Configs</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a href="#publish-a-homepage"
+                                                    >Publish a Homepage</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="#publish-the-default-views--components"
+                                                    >Publish the Default Views
+                                                    &amp; Components</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#the-validate-command"
+                                            >The Validate Command</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#npm-commands">NPM Commands</a>
+                            </li>
+                            <li>
+                                <a href="#commands-for-the-frontend-assets"
+                                    >Commands for the frontend assets</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#realtime-compiler-aka-watching-files-for-changes"
+                                    >Realtime compiler AKA Watching files for
+                                    changes</a
+                                >
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="managing-assets.html">Managing Assets</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="customization.html">Customization</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="updating-hyde.html">Updating Hyde</a>
+                    </li>
+                </ul>
+            </nav>
+            <footer id="sidebar-footer">
+                <p>
+                    <a href="../../index.html">Back to home page</a>
+                </p>
+            </footer>
+        </aside>
+        <main id="content">
+            <article
+                id="document"
+                itemscope
+                itemtype="https://schema.org/Article"
+                class="mx-auto lg:ml-8 prose dark:prose-invert max-w-3xl torchlight-enabled">
+                <section id="document-main-content" itemprop="articleBody">
+                    <h1>
+                        <a
+                            id="console-commands"
+                            href="#console-commands"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Console Commands
+                    </h1>
+                    <p>
+                        Hyde is based on
+                        <a href="https://laravel-zero.com/">Laravel Zero</a>,
+                        which is a micro-framework for console applications.
+                    </p>
+                    <p>
+                        As such, when you are not writing Markdown posts, most
+                        of your time with Hyde will be spent using the CLI.
+                    </p>
+                    <p>
+                        To help in developing your site we have also included a
+                        few scripts in the <code>package.json</code>.
+                    </p>
+                    <h2>
+                        <a
+                            id="hyde-commands"
+                            href="#hyde-commands"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Hyde Commands
+                    </h2>
+                    <p>
+                        The main place you will interact with Hyde is with the
+                        Hyde Console which you access by navigating to your
+                        project directory and running the
+                        <code>php hyde</code> command. If you have ever used the
+                        Artisan Console in Laravel you will feel right at home,
+                        the Hyde CLI is based on Artisan after all!
+                    </p>
+                    <p>
+                        Let's take a quick rundown of the most common commands
+                        you will use.
+                    </p>
+                    <p>
+                        You can always run the base command
+                        <code>php hyde</code> to show the list of commands:
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #A6ACCD;">     </span><span style="color: #FFCB6B;">__</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">__</span><span style="color: #A6ACCD;">        </span><span style="color: #C3E88D;">__</span><span style="color: #A6ACCD;">    </span><span style="color: #C3E88D;">___</span><span style="color: #A6ACCD;">  </span><span style="color: #C3E88D;">__</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">_____</span></div><div class='line'><span style="color: #A6ACCD;">    </span><span style="color: #FFCB6B;">/</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">//</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">/_</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">_____/</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">/__</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">/</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">_</span><span style="color: #A6ACCD;"> \/ </span><span style="color: #C3E88D;">//</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">/</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">_</span><span style="color: #A6ACCD;"> \</span></div><div class='line'><span style="color: #A6ACCD;">   </span><span style="color: #FFCB6B;">/</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">_</span><span style="color: #A6ACCD;">  </span><span style="color: #C3E88D;">/</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">//</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">/</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">_</span><span style="color: #A6ACCD;">  </span><span style="color: #C3E88D;">/</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">-_</span><span style="color: #A6ACCD;">) ___/ _  / ___/</span></div><div class='line'><span style="color: #A6ACCD;">  </span><span style="color: #FFCB6B;">/_//_/</span><span style="color: #A6ACCD;">\_</span><span style="color: #FFCB6B;">,</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">/</span><span style="color: #A6ACCD;">\_</span><span style="color: #C3E88D;">,_/</span><span style="color: #A6ACCD;">\_</span><span style="color: #C3E88D;">_/_/</span><span style="color: #A6ACCD;">  </span><span style="color: #C3E88D;">/_//_/_/</span></div><div class='line'><span style="color: #A6ACCD;">       </span><span style="color: #FFCB6B;">/___/</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #A6ACCD;">  </span><span style="color: #FFCB6B;">v0.1.0-pre</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #A6ACCD;">  </span><span style="color: #FFCB6B;">USAGE:</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">&lt;</span><span style="color: #FFCB6B;">command</span><span style="color: #89DDFF;">&gt;</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">[</span><span style="color: #A6ACCD;">options</span><span style="color: #89DDFF;">]</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">[</span><span style="color: #A6ACCD;">arguments</span><span style="color: #89DDFF;">]</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #A6ACCD;">  </span><span style="color: #FFCB6B;">build</span><span style="color: #A6ACCD;">     </span><span style="color: #C3E88D;">Build</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">the</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">static</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">site</span></div><div class='line'><span style="color: #A6ACCD;">  </span><span style="color: #FFCB6B;">inspire</span><span style="color: #A6ACCD;">   </span><span style="color: #C3E88D;">Display</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">an</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">inspiring</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">quote</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #A6ACCD;">  </span><span style="color: #FFCB6B;">make:post</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">Scaffold</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">a</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">new</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">Markdown</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">blog</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">post</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">file</span></div></code></pre>
+                    <blockquote>
+                        <p>
+                            Tip: You can always add --help to a command to show
+                            detailed usage output
+                        </p>
+                    </blockquote>
+                    <h3>
+                        <a
+                            id="the-build-command"
+                            href="#the-build-command"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >The Build Command
+                    </h3>
+                    <p>
+                        Maybe the most important command is the Build command,
+                        which -- you guessed it -- builds your static site!
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">build</span></div></code></pre>
+                    <blockquote>
+                        <p>
+                            If you want to to prettify the output HTML you can
+                            add the <code>--pretty</code> option. This requires
+                            that you have Node and NPM installed as it uses the
+                            Prettier NPM module.
+                        </p>
+                    </blockquote>
+                    <h4>
+                        <a
+                            id="the-rebuild-command"
+                            href="#the-rebuild-command"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >The Rebuild Command
+                    </h4>
+                    <p>
+                        Using the <code>php hyde build</code> command is great
+                        and all that, but when you just need to update that one
+                        file it gets a little... overkill.
+                    </p>
+                    <p>
+                        Let's solve that! Use the
+                        <code>php hyde rebuild &lt;file&gt;</code> command!
+                    </p>
+                    <p>
+                        In the future it will support an array of files, but for
+                        now, the rebuild command will recompile just that file.
+                    </p>
+                    <h3>
+                        <a
+                            id="the-post-make-command"
+                            href="#the-post-make-command"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >The Post Make Command
+                    </h3>
+                    <p>
+                        You can of course create blog posts the old fashioned
+                        way by just creating the files yourself, but what's the
+                        fun in that?
+                    </p>
+                    <p>
+                        Using the Make command you will be asked a series of
+                        questions which are then used to scaffold a blog post
+                        file. It automatically takes care of YAML Front Matter
+                        formatting and generates a slug from the supplied title
+                        and even adds the current date.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">make:post</span></div></code></pre>
+                    <blockquote>
+                        <p>
+                            Tip: To overwrite existing files, supply the --force
+                            flag (at your own risk of course)
+                        </p>
+                    </blockquote>
+                    <h3>
+                        <a
+                            id="the-publish-command"
+                            href="#the-publish-command"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >The Publish Command
+                    </h3>
+                    <p>
+                        If you are coming from Laravel, you are probably
+                        familiar with the Artisan vendor:publish command.
+                    </p>
+                    <p>
+                        Hyde has a similar command that allows you to publish
+                        various pages.
+                    </p>
+                    <h4>
+                        <a
+                            id="publish-configs"
+                            href="#publish-configs"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Publish Configs
+                    </h4>
+                    <p>
+                        To publish the default configuration files (if you mess
+                        something up, or when updating) run the following
+                        command. You may need to supply the --force option to
+                        overwrite existing files.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">publish:config</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">[</span><span style="color: #A6ACCD;">--force</span><span style="color: #89DDFF;">]</span></div></code></pre>
+                    <h4>
+                        <a
+                            id="publish-a-homepage"
+                            href="#publish-a-homepage"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Publish a Homepage
+                    </h4>
+                    <p>
+                        Hyde comes with 3 build in homepages. On a fresh install
+                        the page 'welcome' is installed. However, you can use
+                        the publish command to publish another one. You will
+                        probably need to supply the --force option to overwrite
+                        existing files.
+                    </p>
+                    <p>The available homepages are:</p>
+                    <ul>
+                        <li>
+                            <em>blank</em>: This is a blank Blade page that
+                            simply contains the base layout
+                        </li>
+                        <li>
+                            <em>post feed</em>: This is the view that this
+                            documentation site uses. It contains a listing of
+                            the latest posts and was previously the default.
+                        </li>
+                        <li>
+                            <em>welcome</em>: This is the current welcome page.
+                            Unlike the other pages, the styles are defined
+                            inline.
+                        </li>
+                    </ul>
+                    <p>
+                        When publishing any of these pages they will be saved as
+                        index.blade.php in the <code>_pages</code> directory
+                        which the compiler will use to create the index.html
+                        page.
+                    </p>
+                    <p>
+                        Tip: If you want to have a /posts page you can publish
+                        the post feed homepage, rename it to
+                        <code>posts.blade.php</code> and republish another home
+                        page!
+                    </p>
+                    <h4>
+                        <a
+                            id="publish-the-default-views--components"
+                            href="#publish-the-default-views--components"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Publish the Default Views &amp; Components
+                    </h4>
+                    <p>
+                        Since Hyde is based on the Laravel view system the
+                        compiler uses Blade views and components.
+                    </p>
+                    <p>
+                        Laravel actually registers two locations for the Hyde
+                        views: your site's resources/views/vendor directory and
+                        the directory source directory in the Framework package.
+                    </p>
+                    <p>
+                        So, when compiling a site, Laravel will first check if a
+                        custom version of the view has been placed in the
+                        resources/views/vendor/hyde directory by the developer
+                        (you). Then, if the view has not been customized,
+                        Laravel will search the Hyde framework view directory.
+                        This makes it easy for you to customize / override the
+                        package's views.
+                    </p>
+                    <p>To publish the views, use</p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">publish:views</span></div></code></pre>
+                    <p>
+                        you will then be asked to select which views you want to
+                        publish. There are 3 options:
+                    </p>
+                    <ul>
+                        <li>
+                            <em>components</em>: These are the reusable
+                            components used by the framework
+                        </li>
+                        <li>
+                            <em>layouts</em>: These are the base layouts used by
+                            the framework
+                        </li>
+                        <li>
+                            <em>404 page</em>: This is a special view,
+                            containing a beautiful Blade view from
+                            <a
+                                href="https://github.com/LaravelCollective/errors"
+                                >LaravelCollective</a
+                            >. When published, it will be compiled into
+                            404.html.
+                        </li>
+                    </ul>
+                    <blockquote>
+                        <p>
+                            Note that when a view is updated in the framework
+                            you will need to republish the views to get the new
+                            changes! You can supply the --force tag to overwrite
+                            any existing files.
+                        </p>
+                    </blockquote>
+                    <h3>
+                        <a
+                            id="the-validate-command"
+                            href="#the-validate-command"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >The Validate Command
+                    </h3>
+                    <p>
+                        Hyde ships with a very useful command that runs a series
+                        of checks to validate your setup and catch any potential
+                        issues.
+                    </p>
+                    <p>
+                        The command is <code>php hyde validate</code> and gives
+                        an output similar to this
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #A6ACCD;">$ </span><span style="color: #C3E88D;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">validate</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #FFCB6B;">Running</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">validation</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">tests!</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #A6ACCD;">   </span><span style="color: #FFCB6B;">PASS</span><span style="color: #A6ACCD;">  </span><span style="color: #C3E88D;">CheckForPageConflictsTest</span></div><div class='line'><span style="color: #A6ACCD;">   </span><span style="color: #FFCB6B;">✓</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">check</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">for</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">conflicts</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">between</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">blade</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">and</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">markdown</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">pages</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #A6ACCD;">   </span><span style="color: #FFCB6B;">PASS</span><span style="color: #A6ACCD;">  </span><span style="color: #C3E88D;">CheckThatAnIndexFileExistsTest</span></div><div class='line'><span style="color: #A6ACCD;">   </span><span style="color: #FFCB6B;">✓</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">check</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">that</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">an</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">index</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">file</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">exists</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #A6ACCD;">   </span><span style="color: #FFCB6B;">WARN</span><span style="color: #A6ACCD;">  </span><span style="color: #C3E88D;">CheckThatDocumentationPagesHaveAnIndexPageTest</span></div><div class='line'><span style="color: #A6ACCD;">   </span><span style="color: #89DDFF;">!</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">check</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">that</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">documentation</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">pages</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">have</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">an</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">index</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">page</span></div><div class='line'><span style="color: #A6ACCD;">   </span><span style="color: #FFCB6B;">→</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">Could</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">not</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">find</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">an</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">index.md</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">file</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">in</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">the</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">_docs</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">directory!</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #A6ACCD;">   </span><span style="color: #FFCB6B;">PASS</span><span style="color: #A6ACCD;">  </span><span style="color: #C3E88D;">CheckThatFrontendAssetsExistTest</span></div><div class='line'><span style="color: #A6ACCD;">   </span><span style="color: #FFCB6B;">✓</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">check</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">that</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">app.css</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">exist</span></div><div class='line'><span style="color: #A6ACCD;">   </span><span style="color: #FFCB6B;">✓</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">check</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">that</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">tailwind.css</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">exist</span></div><div class='line'>&nbsp;</div><div class='line'>&nbsp;</div><div class='line'><span style="color: #A6ACCD;">  </span><span style="color: #FFCB6B;">Tests:</span><span style="color: #A6ACCD;">  </span><span style="color: #C3E88D;">1</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">warnings,</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">4</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">passed</span></div><div class='line'><span style="color: #A6ACCD;">  </span><span style="color: #FFCB6B;">Time:</span><span style="color: #A6ACCD;">   </span><span style="color: #C3E88D;">0.31s</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #FFCB6B;">All</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">done!</span></div></code></pre>
+                    <h2>
+                        <a
+                            id="npm-commands"
+                            href="#npm-commands"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >NPM Commands
+                    </h2>
+                    <p>
+                        The NPM commands are used to compile the frontend CSS
+                        assets and to run the realtime compiler.
+                    </p>
+                    <p>
+                        Make sure you have Node and NPM installed to use these,
+                        and if it's the first time running a command, remember
+                        to run <code>npm install</code> first!
+                    </p>
+                    <p>
+                        If you don't have Node and NPM installed, and you don't
+                        want to install them you can download the
+                        <a
+                            href="https://github.com/hydephp/hyde/tree/master/_site/media"
+                            >prebuilt styles from GitHub</a
+                        >.
+                    </p>
+                    <h2>
+                        <a
+                            id="commands-for-the-frontend-assets"
+                            href="#commands-for-the-frontend-assets"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Commands for the frontend assets
+                    </h2>
+                    <ul>
+                        <li>
+                            <strong><code>npm run dev</code></strong> - Compiles
+                            the Tailwind
+                        </li>
+                        <li>
+                            <strong><code>npm run prod</code></strong> -
+                            Compiles the Tailwind and minifies the output.
+                        </li>
+                    </ul>
+                    <h2>
+                        <a
+                            id="realtime-compiler-aka-watching-files-for-changes"
+                            href="#realtime-compiler-aka-watching-files-for-changes"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Realtime compiler AKA Watching files for changes
+                    </h2>
+                    <p>
+                        Hyde has a real-time compiler that watches your files
+                        for changes and rebuilds the site on the fly.
+                    </p>
+                    <blockquote>
+                        <p>
+                            Currently, all pages are rebuilt, but in a future
+                            update, only the affected files will be rebuilt.
+                        </p>
+                    </blockquote>
+                    <p>
+                        The real-time viewer also uses Browsersync which starts
+                        a local web server and automatically refreshes your
+                        pages once they are changed.
+                    </p>
+                    <p><strong>To start the preview run</strong></p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">npm</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">run</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">watch</span></div></code></pre>
+                    <p>
+                        A browser page should automatically be opened. If not,
+                        just navigate to
+                        <a href="http://localhost:3000/"
+                            >http://localhost:3000/</a
+                        >.
+                    </p>
+                    <p class="mt-8">
+                        <i>
+                            Syntax highlighting by
+                            <a
+                                href="https://torchlight.dev/"
+                                rel="noopener nofollow"
+                                >Torchlight.dev</a
+                            >
+                        </i>
+                    </p>
+                </section>
+            </article>
+        </main>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.js"></script>
+
+        <script defer src="../../media/app.js"></script>
+    </body>
+</html>

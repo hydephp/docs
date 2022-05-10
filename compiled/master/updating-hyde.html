@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>HydePHP - Updating Hyde</title>
+
+        <link
+            rel="shortcut icon"
+            href="../../media/favicon.ico"
+            type="image/x-icon" />
+
+        <meta name="generator" content="HydePHP v0.23.2-beta" />
+
+        <meta property="og:site_name" content="HydePHP" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.css" />
+
+        <link rel="stylesheet" href="../../media/app.css" />
+
+        <script>
+            if (
+                localStorage.getItem("color-theme") === "dark" ||
+                (!("color-theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches)
+            ) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        </script>
+    </head>
+
+    <body id="lagrafo-app">
+        <script>
+            document.body.classList.add("js-enabled");
+        </script>
+
+        <nav id="mobile-navigation">
+            <strong class="mr-auto">
+                <a href="index.html"> HydePHP Docs </a>
+            </strong>
+            <button
+                class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                title="Toggle theme">
+                <span class="sr-only">Toggle dark theme</span>
+                <figure class="theme-icon" role="presentation"></figure>
+            </button>
+            <button
+                id="sidebar-toggle"
+                title="Toggle sidebar"
+                aria-label="Toggle sidebar navigation menu">
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+                <span class="icon-bar" role="presentation"></span>
+            </button>
+        </nav>
+        <aside id="sidebar">
+            <header id="sidebar-header">
+                <div id="sidebar-brand">
+                    <strong>
+                        <a href="index.html"> HydePHP Docs </a>
+                    </strong>
+                    <button
+                        class="theme-toggle-button flex items-center px-3 py-1 hover:text-gray-700 dark:text-gray-200"
+                        title="Toggle theme">
+                        <span class="sr-only">Toggle dark theme</span>
+                        <figure class="theme-icon" role="presentation"></figure>
+                    </button>
+                </div>
+            </header>
+            <nav id="sidebar-navigation">
+                <ul id="sidebar-navigation-menu" role="list">
+                    <li class="sidebar-navigation-item">
+                        <a href="installation.html">Installation</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="getting-started.html">Getting Started</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="directory-structure.html"
+                            >Directory Structure</a
+                        >
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="console-commands.html">Console Commands</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="managing-assets.html">Managing Assets</a>
+                    </li>
+                    <li class="sidebar-navigation-item">
+                        <a href="customization.html">Customization</a>
+                    </li>
+                    <li class="sidebar-navigation-item active">
+                        <a href="updating-hyde.html" aria-current="true"
+                            >Updating Hyde</a
+                        >
+
+                        <span class="sr-only">Table of contents</span>
+                        <ul class="table-of-contents">
+                            <li>
+                                <a
+                                    href="#while-hyde-is-in-beta-stuff-can-change-rapidly"
+                                    >While Hyde is in beta, stuff can change
+                                    rapidly.</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#updating-hydeframework"
+                                    >Updating Hyde/Framework</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#updating-hydehyde"
+                                    >Updating Hyde/Hyde</a
+                                >
+                                <ul>
+                                    <li>
+                                        <a href="#using-git">Using Git</a>
+                                    </li>
+                                    <li>
+                                        <a href="#manual-update"
+                                            >Manual Update</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#post-update-instructions"
+                                    >Post-update instructions</a
+                                >
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <footer id="sidebar-footer">
+                <p>
+                    <a href="../../index.html">Back to home page</a>
+                </p>
+            </footer>
+        </aside>
+        <main id="content">
+            <article
+                id="document"
+                itemscope
+                itemtype="https://schema.org/Article"
+                class="mx-auto lg:ml-8 prose dark:prose-invert max-w-3xl torchlight-enabled">
+                <section id="document-main-content" itemprop="articleBody">
+                    <h1>
+                        <a
+                            id="updating-hyde"
+                            href="#updating-hyde"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Updating Hyde
+                    </h1>
+                    <h2>
+                        <a
+                            id="while-hyde-is-in-beta-stuff-can-change-rapidly"
+                            href="#while-hyde-is-in-beta-stuff-can-change-rapidly"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >While Hyde is in beta, stuff can change rapidly.
+                    </h2>
+                    <p>
+                        This guide will help you update Hyde to the latest
+                        version. It is recommended to back up your source files
+                        before updating.
+                    </p>
+                    <h2>
+                        <a
+                            id="updating-hydeframework"
+                            href="#updating-hydeframework"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Updating Hyde/Framework
+                    </h2>
+                    <p>
+                        Run the following command from your Hyde/Hyde
+                        installation:
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">composer</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">update</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde/framework</span></div></code></pre>
+                    <p>
+                        Next, follow the post-update instructions for Hyde/Hyde.
+                    </p>
+                    <h2>
+                        <a
+                            id="updating-hydehyde"
+                            href="#updating-hydehyde"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Updating Hyde/Hyde
+                    </h2>
+                    <p>
+                        When updating an existing installation, first ensure you
+                        have a Git backup of your source files to revert the
+                        update.
+                    </p>
+                    <p>
+                        Depending on how you installed Hyde, there are a few
+                        different ways to update it.
+                    </p>
+                    <h3>
+                        <a
+                            id="using-git"
+                            href="#using-git"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Using Git
+                    </h3>
+                    <p>
+                        Make sure you have a remote set up for the repository.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">git</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">remote</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">add</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">upstream</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">https://github.com/hydephp/hyde.git</span></div></code></pre>
+                    <p>Then pull the latest changes from the remote:</p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">git</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">pull</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">upstream</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">master</span></div></code></pre>
+                    <p>
+                        Next, follow the post-update instructions for Hyde/Hyde.
+                    </p>
+                    <h3>
+                        <a
+                            id="manual-update"
+                            href="#manual-update"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Manual Update
+                    </h3>
+                    <p>
+                        Since all resource files are in the content directories
+                        you can simply copy those files to the new location.
+                    </p>
+                    <p>
+                        If you have changed any other files, for example in the
+                        App directory, you will need to update those files
+                        manually as well. But if you have done that you probably
+                        know what you are doing. I hope. The same goes if you
+                        have created any custom blade components or have
+                        modified Hyde ones.
+                    </p>
+                    <p>
+                        Example CLI workflow, assuming the Hyde/Hyde project is
+                        stored as <code>my-project</code> in the home directory:
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #82AAFF;">cd</span><span style="color: #A6ACCD;"> </span><span style="color: #89DDFF;">~</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">2</span><span style="color: #FFCB6B;">mv</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-project</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-project-old</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">3</span><span style="color: #FFCB6B;">composer</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">create-project</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde/hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-project</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">4</span>&nbsp;</div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">5</span><span style="color: #FFCB6B;">cp</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">-r</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-old-project/_pages</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-project/content/_pages</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">6</span><span style="color: #FFCB6B;">cp</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">-r</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-old-project/_posts</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-project/content/_posts</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">7</span><span style="color: #FFCB6B;">cp</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">-r</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-old-project/_media</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-project/content/_media</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">8</span><span style="color: #FFCB6B;">cp</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">-r</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-old-project/_docs</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-project/content/_docs</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">9</span><span style="color: #FFCB6B;">cp</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">-r</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-old-project/config</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">my-project/config</span></div></code></pre>
+                    <p>
+                        Next, follow the post-update instructions for Hyde/Hyde.
+                        After verifying that everything is working, you can
+                        delete the old project directory.
+                    </p>
+                    <h2>
+                        <a
+                            id="post-update-instructions"
+                            href="#post-update-instructions"
+                            class="heading-permalink"
+                            aria-hidden="true"
+                            title="Permalink"></a
+                        >Post-update instructions
+                    </h2>
+                    <p>
+                        After updating Hyde you should update your config and
+                        resource files. This is where things can get a tiny bit
+                        dangerous as the files will be overwritten. However,
+                        since you should be using Git, you can take care of any
+                        merge conflicts that arise.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">update:configs</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">2</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">update:assets</span></div></code></pre>
+                    <p>
+                        If you have published any of the Hyde Blade components
+                        you will need to re-publish them.
+                    </p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">publish:views</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">layouts</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">2</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">publish:views</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">components</span></div></code></pre>
+                    <p>Next, re-build your site.</p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">php</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">hyde</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">build</span></div></code></pre>
+                    <p>And recompile your assets if applicable.</p>
+                    <pre><code data-theme="material-theme-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #00000080;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">1</span><span style="color: #FFCB6B;">npm</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">install</span></div><div class='line'><span style="color:#3A3F58; text-align: right; -webkit-user-select: none; user-select: none;" class="line-number">2</span><span style="color: #FFCB6B;">npm</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">run</span><span style="color: #A6ACCD;"> </span><span style="color: #C3E88D;">dev/prod</span></div></code></pre>
+                    <p class="mt-8">
+                        <i>
+                            Syntax highlighting by
+                            <a
+                                href="https://torchlight.dev/"
+                                rel="noopener nofollow"
+                                >Torchlight.dev</a
+                            >
+                        </i>
+                    </p>
+                </section>
+            </article>
+        </main>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/hydefront@v1.7/dist/hyde.js"></script>
+
+        <script defer src="../../media/app.js"></script>
+    </body>
+</html>
